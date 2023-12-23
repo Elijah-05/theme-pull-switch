@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -12,8 +13,9 @@ export default {
         milk: "#F2F2F2",
       },
       fontFamily: {
-        antonion: 'Antonio'
-      }
+        antonion: "Antonio",
+        inter: "Inter",
+      },
     },
   },
   plugins: [],
