@@ -1,16 +1,23 @@
 import { useAtom } from "jotai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { theme } from "../store/store";
 
 const Root = () => {
   const [getTheme, setTheme] = useAtom(theme);
   const [switchHovered, setSwitchHovered] = useState(false);
   const [isSwitchClicked, setIsSwitchClicked] = useState(false);
+  const [isSwitchFall, setSwitchFall] = useState(false);
   const isDark = getTheme === "dark" ? true : false;
   const switchColor = getTheme === "light" ? "bg-white" : "bg-primary";
 
+  useEffect(() => {
+    setSwitchFall(true);
+  }, []);
+
   const handleSwitchHover = () => {
-    setSwitchHovered(!switchHovered);
+    setTimeout(() => {
+      setSwitchHovered(!switchHovered);
+    }, 1000 * 3);
   };
 
   const handleToggleTheme = () => {
@@ -21,15 +28,17 @@ const Root = () => {
     setTheme(getTheme == "light" ? "dark" : "light");
     setIsSwitchClicked(!isSwitchClicked);
     setTimeout(() => {
-        setIsSwitchClicked(isSwitchClicked);
-    }, 200)
+      setIsSwitchClicked(isSwitchClicked);
+    }, 200);
   };
 
   return (
     <div className="relative h-screen max-h-screen border-slate-70 flex items-center justify-center">
-      <div className="absolute top-0 right-[15vw] ">
+      <div className="absolute top-0 right-8 md:right-[15vw] z-50 ">
         <div
-          className={`top-0 -translate-x-1/2 w-1 bg-slate-600 h-[40vh] ${
+          className={`top-0  -translate-x-1/2 w-1 bg-slate-600 ${
+            isSwitchFall ? "h-[70vh] md:h-[40vh] duration-1000" : "h-0"
+          } ${
             switchHovered
               ? "drop-shadow-[4px_0px_1px_rgba(0,0,0,0.2)]"
               : "drop-shadow-[4px_0px_3px_rgba(0,0,0,0.3)]"
@@ -37,7 +46,9 @@ const Root = () => {
         />
         <div
           className={`w-10 ${switchColor} ${
-            isSwitchClicked ? "-translate-y-0 duration-500" : 'hover:-translate-y-4 duration-1000'
+            isSwitchClicked
+              ? "translate-y-1 duration-500"
+              : "hover:-translate-y-4 duration-1000"
           } h-16 -translate-x-1/2 rounded-full drop-shadow-[3px_14px_8px_rgba(0,0,0,0.2)] cursor-pointer -translate-y-8 hover:drop-shadow-[3px_10px_4px_rgba(0,0,0,0.3)] group`}
           onMouseEnter={handleSwitchHover}
           onMouseLeave={handleSwitchHover}
@@ -60,7 +71,9 @@ const Root = () => {
         </div>
       </div>
       <div className="absolute bottom-10 font-inter text-xs text-center opacity-80 text-white  ">
-        <p className=" font-extralight tracking-wider">Designed & Implemented by</p>
+        <p className=" font-extralight tracking-wider">
+          Designed & Implemented by
+        </p>
         <p className=" tracking-wider">Elyas Abebe</p>
       </div>
     </div>
