@@ -59,6 +59,10 @@ const Root = () => {
           <span className="text-8xl mt-8">59</span>
         </div>
       </div>
+      <div className="absolute bottom-10 font-inter text-xs text-center opacity-80 text-white  ">
+        <p className=" font-extralight tracking-wider">Designed & Implemented by</p>
+        <p className=" tracking-wider">Elyas Abebe</p>
+      </div>
     </div>
   );
 };
