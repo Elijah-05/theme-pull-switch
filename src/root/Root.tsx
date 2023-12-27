@@ -11,7 +11,9 @@ const Root = () => {
   const switchColor = getTheme === "light" ? "bg-white" : "bg-primary";
 
   useEffect(() => {
-    setSwitchFall(true);
+    setTimeout(() => {
+      setSwitchFall(true);
+    }, 100);
   }, []);
 
   const handleSwitchHover = () => {
@@ -33,10 +35,10 @@ const Root = () => {
   };
 
   return (
-    <div className="relative h-screen max-h-screen border-slate-70 flex items-center justify-center">
+    <div className=" h-screen max-h-screen border-slate-70 flex items-center justify-center">
       <div className="absolute top-0 right-8 md:right-[15vw] z-50 ">
         <div
-          className={`top-0  -translate-x-1/2 w-1 bg-slate-600 ${
+          className={` w-1 bg-slate-600 ${
             isSwitchFall ? "h-[70vh] md:h-[40vh] duration-1000" : "h-0"
           } ${
             switchHovered
@@ -44,16 +46,30 @@ const Root = () => {
               : "drop-shadow-[4px_0px_3px_rgba(0,0,0,0.3)]"
           } duration-500`}
         />
-        <div
-          className={`w-10 ${switchColor} ${
+        <button
+          className={`absolute -translate-x-1/2 ml-[1.5px] -mb-2 bottom-0 w-10 ${switchColor} ${
             isSwitchClicked
-              ? "translate-y-1 duration-500"
-              : "hover:-translate-y-4 duration-1000"
-          } h-16 -translate-x-1/2 rounded-full drop-shadow-[3px_14px_8px_rgba(0,0,0,0.2)] cursor-pointer -translate-y-8 hover:drop-shadow-[3px_10px_4px_rgba(0,0,0,0.3)] group`}
+              ? "translate-y-8 duration-500"
+              : "hover:translate-y-3 duration-1000"
+          } h-16 rounded-full drop-shadow-[3px_14px_8px_rgba(0,0,0,0.2)] hover:drop-shadow-[3px_10px_4px_rgba(0,0,0,0.3)] flex justify-center items-center`}
           onMouseEnter={handleSwitchHover}
           onMouseLeave={handleSwitchHover}
           onClick={handleToggleTheme}
-        />
+        >
+          <div className="border border-black bg-slate-300 h-8 rounded-full">
+            <div
+              className={`w-4 h-4 mt-[1px] bg-gray-700 rounded-full ${
+                getTheme == "light" ? "translate-y-3" : ""
+              } duration-300`}
+            />
+            <div className=" absolute top-0 translate-y-1/2 mt-2 left-1/2 text-gray-700 -translate-x-1/2 -mt-[1px] font-inter font- text-xs">
+              1
+            </div>
+            <div className=" absolute left-1/2 text-gray-700 -translate-x-1/2 -mt-[1px] font-inter font- text-xs">
+              0
+            </div>
+          </div>
+        </button>
       </div>
       <div className={` mb-[30vh] flex flex-col text-white select-none`}>
         <div
