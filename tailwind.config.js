@@ -16,6 +16,11 @@ export default {
         antonion: "Antonio",
         inter: "Inter",
       },
+      screens: {
+        xs: '300px',
+        mmd: '780px'
+        
+      }
     },
   },
   plugins: [],
