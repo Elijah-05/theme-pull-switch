@@ -4,7 +4,12 @@ const Footer = () => {
             <p className=" font-extralight tracking-wider">
                 Designed & Implemented by
             </p>
-            <p className=" tracking-wider">Elyas Abebe</p>
+            <a
+                href="https://www.linkedin.com/in/elyas-abebe/"
+                className=" tracking-wider hover:text-primary select-none"
+            >
+                Elyas Abebe
+            </a>
         </div>
     )
 }
